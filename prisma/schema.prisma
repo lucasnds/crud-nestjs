@@ -1,0 +1,21 @@
+//lugar onde define tabela 
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Book {
+  id          String @id @default(uuid())
+  title       String
+  description String
+  bar_code    String @unique
+
+  @@map("books") //nomeia a tabela de forma diferente do "model"
+}
+
+//migrate é o historico de alteraçoes feita no banco
